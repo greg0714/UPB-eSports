@@ -21,10 +21,9 @@ var app = {
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
         $.ajax({
-            url: "http://localhost:8080/greeting?" + window.location.href.slice(window.location.href.indexOf('?') + 1)
+            url: "http://localhost:8080/greeting?name=" + (getParameterByName('name') ? getParameterByName('name') : '')
         }).then(function (data, status, jqxhr) {
             $('.hello').append(data.content);
-            console.log(getUrlVars());
         });
     },
   
@@ -51,14 +50,14 @@ var app = {
 
 app.initialize();
 
-// Read a page's GET URL variables and return them as an associative array.
-function getUrlVars() {
-    var vars = [], hash;
-    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-    for (var i = 0; i < hashes.length; i++) {
-        hash = hashes[i].split('=');
-        vars.push(hash[0]);
-        vars[hash[0]] = hash[1];
-    }
-    return vars;
+//Return parameter value from query string by parameter key
+//https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
