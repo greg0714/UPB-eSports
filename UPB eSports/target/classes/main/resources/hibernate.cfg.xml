@@ -6,7 +6,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://upbesports.cyyybemy0h6v.us-east-2.rds.amazonaws.com:3306</property>
+        <property name="hibernate.connection.url">jdbc:mysql://upbesports.cyyybemy0h6v.us-east-2.rds.amazonaws.com:3306/administrator</property>
         <property name="hibernate.connection.username">administrator</property>
         <property name="hibernate.connection.password">L0r3m1psumD0l0rS1tAm3t</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>

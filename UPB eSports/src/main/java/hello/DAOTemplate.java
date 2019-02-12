@@ -3,46 +3,44 @@ package main.java.hello;
 import java.io.Serializable;
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-public abstract class DAOTemplate< T extends Serializable >{
-	   private Class< T > clazz;
+public abstract class DAOTemplate< T extends Serializable > {
 	 
-	   @Autowired private SessionFactory sessionFactory;
-	 
-	   public void setClazz( final Class< T > clazzToSet ){
-	      clazz = clazzToSet;
-	   }
-	 
-	   public T findOne( final long id ){
-	      return getCurrentSession().get( clazz, id );
-	   }
-	   @SuppressWarnings("unchecked")
-	public List< T > findAll(){
-	      return getCurrentSession()
-	       .createQuery( "from " + clazz.getName() ).list();
-	   }
-	 
-	   public void save( final T entity ){
-	      getCurrentSession().persist( entity );
-	   }
-	 
-	   @SuppressWarnings("unchecked")
-	public T update( final T entity ){
-	      return (T) getCurrentSession().merge( entity );
-	   }
-	 
-	   public void delete( final T entity ){
-	      getCurrentSession().delete( entity );
-	   }
-	   public void deleteById( final long id ){
-	      final T entity = findOne( id);
-	      delete( entity );
-	   }
-	 
-	   protected final Session getCurrentSession(){
-	      return sessionFactory.getCurrentSession();
-	   }
+	private Class< T > clazz;
+ 
+	@PersistenceContext
+	EntityManager entityManager;
+ 
+	public final void setClazz( Class< T > clazzToSet ){
+		this.clazz = clazzToSet;
 	}
+ 
+	public T findOne( long id ){
+		return entityManager.find( clazz, id );
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List< T > findAll(){
+		return entityManager.createQuery( "from " + clazz.getName() )
+				.getResultList();
+	}
+ 
+	public void create( T entity ){
+		entityManager.persist( entity );
+	}
+ 
+	public T update( T entity ){
+	   return entityManager.merge( entity );
+	}
+ 
+	public void delete( T entity ){
+		entityManager.remove( entity );
+	}
+	
+	public void deleteById( long entityId ){
+		T entity = findOne( entityId );
+		delete( entity );
+	}
+}

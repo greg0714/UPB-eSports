@@ -17,6 +17,13 @@ public class Greeting implements Serializable
 		name = null,
 		message = null;
 
+	public Greeting() {}
+	public Greeting(String name, String message) 
+	{
+		this.message = message;
+		this.name = name;
+	}
+	
 	@Id
 	@Column(name = "name")
 	public String getName() {return name;}

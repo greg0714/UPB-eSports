@@ -20,18 +20,19 @@ var app = {
     // Application Constructor
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-        $.ajax({
-            url: "http://localhost:8080/greeting?name=" + (getParameterByName('name') ? getParameterByName('name') : '')
-        }).then(function (data, status, jqxhr) {
-            $('.hello').append(data.content);
-        });
     },
   
     // deviceready Event Handler
     //
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
-    onDeviceReady: function() {
+    onDeviceReady: function () {
+        $.ajax({
+            url: "http://localhost:8080/greeting?name=" + (getParameterByName('name') ? getParameterByName('name') : '')
+        }).then(function (data, status, jqxhr) {
+            console.log(data);
+            $('.hello').append(data.message);
+        });
         this.receivedEvent('deviceready');
     },
 

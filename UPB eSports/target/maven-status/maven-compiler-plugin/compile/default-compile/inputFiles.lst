@@ -1,3 +1,7 @@
-D:\Greg McKibbin\Git\UPB-eSports\UPB eSports\src\hello\Greeting.java
-D:\Greg McKibbin\Git\UPB-eSports\UPB eSports\src\hello\Application.java
-D:\Greg McKibbin\Git\UPB-eSports\UPB eSports\src\hello\GreetingController.java
+D:\Greg McKibbin\Git\UPB-eSports\UPB eSports\src\main\java\hello\DAOTemplate.java
+D:\Greg McKibbin\Git\UPB-eSports\UPB eSports\src\main\java\hello\HibernateConf.java
+D:\Greg McKibbin\Git\UPB-eSports\UPB eSports\src\main\java\hello\Greeting.java
+D:\Greg McKibbin\Git\UPB-eSports\UPB eSports\src\main\java\hello\Application.java
+D:\Greg McKibbin\Git\UPB-eSports\UPB eSports\src\main\java\hello\GreetingDAO.java
+D:\Greg McKibbin\Git\UPB-eSports\UPB eSports\src\main\java\hello\GreetingController.java
+D:\Greg McKibbin\Git\UPB-eSports\UPB eSports\src\main\java\utils\ValidationUtils.java
