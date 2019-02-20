@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Built-By: GSM19
+Built-By: gsm19
 Build-Jdk: 9.0.4
 Implementation-Title: UPB eSports
 Implementation-Version: 0.0.1-SNAPSHOT

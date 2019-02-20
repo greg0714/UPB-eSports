@@ -34,7 +34,8 @@ public class Greeting implements Serializable
 	public void setMessage(String message) {this.message = message;}
 	
 	@Override
-	public int hashCode() {
+	public int hashCode() 
+	{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -42,7 +43,8 @@ public class Greeting implements Serializable
 	}
 	
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj) 
+	{
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -59,7 +61,8 @@ public class Greeting implements Serializable
 	}
 	
 	@Override
-	public String toString() {
+	public String toString() 
+	{
 		return "Greeting [name=" + name + ", message=" + message + "]";
 	}
 }

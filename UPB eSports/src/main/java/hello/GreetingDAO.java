@@ -6,7 +6,8 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
-import main.java.utils.ValidationUtils;
+import com.upbesports.dao.DAOTemplate;
+import com.upbesports.utils.ValidationUtils;
 
 @Transactional
 @Repository
@@ -17,7 +18,7 @@ public class GreetingDAO extends DAOTemplate<Greeting>
 	{
 		if(!ValidationUtils.validateString(name)) return new Greeting("", "Hello, World!");
 		
-		List<Greeting> resultList = this.entityManager
+		List<Greeting> resultList = this.getEntityManager()
 			.createNativeQuery("select * from Greeting where upper(name) = :name", Greeting.class)
 			.setParameter("name", name.toUpperCase())
 			.getResultList();
