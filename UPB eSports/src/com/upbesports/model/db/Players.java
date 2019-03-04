@@ -16,9 +16,7 @@ public class Players implements Serializable
 {
 	private static final long serialVersionUID = -1362550444317550230L;
 
-	private Boolean
-		administrator = null,
-		eligible = null;
+	private Boolean eligible = null;
 	
 	private Calendar
 		joined = null,
@@ -37,10 +35,6 @@ public class Players implements Serializable
 	@Column(name = "id")
 	public Long getId() {return id;}
 	public void setId(Long id) {this.id = id;}
-
-	@Column(name = "administrator")
-	public Boolean getAdministrator() {return administrator;}
-	public void setAdministrator(Boolean administrator) {this.administrator = administrator;}
 
 	@Column(name = "display_name")
 	public String getDisplayName() {return displayName;}
@@ -107,7 +101,6 @@ public class Players implements Serializable
 	public String toString() 
 	{
 		return "Players [id=" + id + 
-			", administrator=" + administrator + 
 			", displayName=" + displayName + 
 			", eligible=" + eligible + 
 			", firstName=" + firstName + 

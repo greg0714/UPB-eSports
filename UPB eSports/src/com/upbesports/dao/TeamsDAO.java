@@ -9,5 +9,5 @@ import com.upbesports.model.db.Teams;
 @Transactional(readOnly = true, rollbackFor = Exception.class)
 public class TeamsDAO extends DAOTemplate<Teams> 
 {
-
+	public TeamsDAO() {setClazz(Teams.class);}
 }

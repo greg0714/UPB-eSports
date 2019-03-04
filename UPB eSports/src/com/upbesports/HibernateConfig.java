@@ -1,4 +1,4 @@
-package com.upbesports.application;
+package com.upbesports;
 
 import java.util.Properties;
 
@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-public class HibernateConf 
+public class HibernateConfig 
 {
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() 
@@ -39,7 +39,7 @@ public class HibernateConf
 	{
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://upbesports.cyyybemy0h6v.us-east-2.rds.amazonaws.com:3306/administrator");
+		dataSource.setUrl("jdbc:mysql://upbesports.cyyybemy0h6v.us-east-2.rds.amazonaws.com:3306/upb_esports");
 		dataSource.setUsername( "administrator" );
 		dataSource.setPassword( "L0r3m1psumD0l0rS1tAm3t" );
 		return dataSource;
@@ -63,7 +63,6 @@ public class HibernateConf
    private Properties additionalProperties() 
    {
        Properties properties = new Properties();
-       properties.setProperty("hibernate.hbm2ddl.auto", "update");
        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
        properties.setProperty("hibernate.show_sql", "true");
        properties.setProperty("hibernate.format_sql", "true");

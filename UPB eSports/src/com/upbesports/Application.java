@@ -1,4 +1,4 @@
-package com.upbesports.application;
+package com.upbesports;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
