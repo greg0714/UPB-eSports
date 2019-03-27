@@ -1,0 +1,52 @@
+{"properties": [
+  {
+    "name": "hibernate.dialect",
+    "type": "java.lang.String",
+    "description": "A description for 'hibernate.dialect'"
+  },
+  {
+    "name": "hibernate.show_sql",
+    "type": "java.lang.String",
+    "description": "A description for 'hibernate.show_sql'"
+  },
+  {
+    "name": "hibernate.format_sql",
+    "type": "java.lang.String",
+    "description": "A description for 'hibernate.format_sql'"
+  },
+  {
+    "name": "gluu.clientId",
+    "type": "java.lang.String",
+    "description": "A description for 'gluu.clientId'"
+  },
+  {
+    "name": "gluu.clientSecret",
+    "type": "java.lang.String",
+    "description": "A description for 'gluu.clientSecret'"
+  },
+  {
+    "name": "gluu.accessTokenUri",
+    "type": "java.lang.String",
+    "description": "A description for 'gluu.accessTokenUri'"
+  },
+  {
+    "name": "gluu.userAuthorizationUri",
+    "type": "java.lang.String",
+    "description": "A description for 'gluu.userAuthorizationUri'"
+  },
+  {
+    "name": "gluu.redirectUri",
+    "type": "java.lang.String",
+    "description": "A description for 'gluu.redirectUri'"
+  },
+  {
+    "name": "gluu.userInfoUri",
+    "type": "java.lang.String",
+    "description": "A description for 'gluu.userInfoUri'"
+  },
+  {
+    "name": "gluu.clientSecret",
+    "type": "java.lang.String",
+    "description": "A description for 'gluu.clientSecret'"
+  }
+]}

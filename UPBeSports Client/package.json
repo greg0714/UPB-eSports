@@ -20,5 +20,8 @@
         "platforms": [
             "browser"
         ]
+    },
+    "devDependencies": {
+        "gulp-connect": "^5.7.0"
     }
 }

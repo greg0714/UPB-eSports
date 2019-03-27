@@ -39,7 +39,7 @@ create table Authorities (
 create table Players (
 	id int not null auto_increment primary key,
     user_email varchar(50),
-    first_name varchar(20),
+    first_name varchar(20),Users
     middle_name varchar(20),
     last_name varchar(20),
     display_name varchar(50),

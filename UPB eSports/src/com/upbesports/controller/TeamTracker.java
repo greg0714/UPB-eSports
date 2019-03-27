@@ -40,7 +40,7 @@ public class TeamTracker
 	}
 	
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/teamTracker/auth/addGame", method = RequestMethod.POST)
+	@RequestMapping(value = "/teamTracker/addGame", method = RequestMethod.POST)
 	public void addGame(HttpServletRequest request, HttpServletResponse response, GamesForm form) throws IOException
 	{
 		if(!gamesDAO.exists(form.getName()))
