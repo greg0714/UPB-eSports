@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,7 +28,6 @@ public class TeamTracker
 	@Autowired GamesDAO gamesDAO;
 	@Autowired PlayersDAO playersDAO;
 	
-	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/teamTracker/getGames", method = RequestMethod.GET)
 	public List<Games> getGames(HttpServletRequest request, HttpServletResponse response)
 	{
@@ -39,7 +37,6 @@ public class TeamTracker
 		return gamesDAO.findAllFiltered(filters, sorters);
 	}
 	
-	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/teamTracker/addGame", method = RequestMethod.POST)
 	public void addGame(HttpServletRequest request, HttpServletResponse response, GamesForm form) throws IOException
 	{
@@ -61,7 +58,6 @@ public class TeamTracker
 		else response.sendError(HttpServletResponse.SC_CONFLICT, "A game with that name already exists.");
 	}
 	
-    @CrossOrigin(origins = "*")
 	@RequestMapping(value = "/teamTracker/getTeams", method = RequestMethod.GET)
 	public List<Teams> getTeams(HttpServletRequest request, HttpServletResponse response)
 	{
@@ -73,7 +69,6 @@ public class TeamTracker
     	return teamsDAO.findAllFiltered(filters, sorters);
 	}
     
-    @CrossOrigin(origins = "*")
 	@RequestMapping(value = "/teamTracker/getPlayers", method = RequestMethod.GET)
 	public List<Players> getPlayers(HttpServletRequest request, HttpServletResponse response)
 	{

@@ -33,7 +33,7 @@ public class ApplicationConfig
    	public DataSource dataSource()
 	{
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		dataSource.setUrl("jdbc:mysql://upbesports.cyyybemy0h6v.us-east-2.rds.amazonaws.com:3306/upb_esports");
 		dataSource.setUsername( "administrator" );
 		dataSource.setPassword( "L0r3m1psumD0l0rS1tAm3t" );

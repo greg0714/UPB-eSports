@@ -23,31 +23,16 @@ create table Teams (
     FOREIGN KEY (game_id) REFERENCES Games(id)
 );
 
-create table Users (
-    email varchar(50) not null primary key,
-    password varchar(100) not null,
-    enabled boolean not null
-);
-
-create table Authorities (
-	id int not null auto_increment primary key,
-	email varchar(50) not null,
-    authority varchar(20) not null,
-    FOREIGN KEY (email) REFERENCES Users(email)
-);
-
 create table Players (
 	id int not null auto_increment primary key,
-    user_email varchar(50),
-    first_name varchar(20),Users
+    first_name varchar(20),
     middle_name varchar(20),
     last_name varchar(20),
     display_name varchar(50),
     eligible boolean,
     joined timestamp,
     updated timestamp,
-    updated_by varchar(50),
-    FOREIGN KEY (user_email) REFERENCES Users(email)
+    updated_by varchar(50)
 );
 
 create table TeamPlayers (

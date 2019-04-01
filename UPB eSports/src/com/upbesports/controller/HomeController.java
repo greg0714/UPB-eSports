@@ -20,6 +20,6 @@ public class HomeController
     {
         final String username = SecurityContextHolder.getContext().getAuthentication().getName();
         logger.info(username);
-        return "Welcome, " + username;
+        return username;
     }
 }

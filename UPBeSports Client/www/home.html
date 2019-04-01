@@ -2,34 +2,90 @@
 <html>
 <head>
     <script src="cordova.js"></script>
-    <link rel="stylesheet" href="css/onsenui.css">
-    <link rel="stylesheet" href="css/onsen-css-components.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script src="js/cookie-handler.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://cdn.rawgit.com/GluuFederation/openid-implicit-client/master/openidconnect.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.0/js.cookie.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 </head>
 <body>
-    <p>Logged in</p>
-    <div id='tokenClaims'></div>
-    <div id='userInfoClaims'></div>
+    
+</body>
+<script>
+    var storage = window.localStorage;
 
-    <script>
+    var statusCodeDefaults = {
+        401: function(){window.location = "https://localhost:8000/index.html"},
+        404: function(){alert("Resource not found.")},
+        500: function(){alert("There was an error with your request. Please try again later. If the problem persists, contact the administrator.")}
+    };
+    
+    var createPageTemplate = function(title, html) {
+        '<ons-page>' +
+            '<ons-toolbar>' +
+            '<div class="left">' +
+                '<ons-toolbar-button onclick="fn.open()">' +
+                '<ons-icon icon="md-menu"></ons-icon>'
+                '</ons-toolbar-button>' +
+            '</div>' +
+            '<div class="center">' + title + '</div>' +
+            '</ons-toolbar>' + html +
+        '</ons-page>'
+    };
+
+    loadHomePage = function() {
+        var html;
+        var content = $('#content');
+        $.ajax({
+            url: 'https://localhost:8443/',
+            headers: {Authorization: 'Bearer ' + storage.getItem('access_token')},
+            statusCode: statusCodeDefaults,
+            success: function(data){
+                html = '<h2 style="text-align:\'center\'>Welcome, ' + data + '!</h2>';
+                content.html(createPageTemplate('Home', html));
+            },
+            error: function(jqxhr){
+                console.log(jqxhr);
+            }
+        });
+    };
+
+    loadPlayersPage = function() {
+        var html;
+        $.ajax({
+            url: 'https://localhost:8443/teamTracker/getPlayers',
+            statusCode: statusCodeDefaults,
+            success: function(data){
+                html = '<ons-list><ons-list-header>Players</ons-list-header>';
+                for(var i = 0; i < data.length; i++){
+                    html += '<ons-list-item expandable>' + data[i].displayName + '<div class="expandable-content">';
+                    html += 'First Name: ' + data[i].firstName + '<br/>';
+                    html += 'Middle Name: ' + data[i].middleName + '<br/>';
+                    html += 'Last Name: ' + data[i].lastName + '<br/>';
+                    html += 'Eligible: ' + (data[i].eligible ? 'Yes' : 'No') + '<br/>';
+                    html += 'Joined: ' + data[i].joined + '<br/>';
+                    html += 'Updated: ' + data[i].updated + '<br/>';
+                    html += 'Updated By: ' + data[i].updatedBy + '<br/>';
+                    html += '</div></ons-list-item>'
+                }
+                html += '</ons-list>';
+                $(document).ready(function() {$('#content').html(createPageTemplate('Players', html))});
+            },
+            error: function(jqxhr){
+                console.log(jqxhr);
+            }
+        });
+    };
+
+    $(document).ready(function() {
         try{
             OIDC.restoreInfo();
-            var id_token = OIDC.getValidIdToken();
             var access_token = OIDC.getAccessToken();
-            var tokenClaims = JSON.parse(OIDC.getIdTokenParts(id_token)[1]);
-            var userInfoClaims = JSON.parse(OIDC.getUserInfo(access_token));
-            var tokenClaimsHTMLString = JSONObjToHTMLTable(tokenClaims);
-            var userInfoClaimsHTMLString = JSONObjToHTMLTable(userInfoClaims);
-            OIDC.debug(true, id_token);
-            $(document).ready(function(){
-                $('#tokenClaims').html(tokenClaimsHTMLString);
-                $('#userInfoClaims').html(userInfoClaimsHTMLString);
-            });
+            storage.setItem("access_token", access_token);
+            loadHomePage();
         } catch(err) {
             window.location = 'http://localhost:8000/index.html'
         }
-    </script>
-</body>
+    });
+</script>
 </html>

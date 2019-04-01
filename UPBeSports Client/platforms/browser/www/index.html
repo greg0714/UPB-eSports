@@ -4,8 +4,8 @@
     <script src="cordova.js"></script>
     <link rel="stylesheet" href="css/onsenui.css">
     <link rel="stylesheet" href="css/onsen-css-components.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="js/onsenui.min.js"></script>
     <script src="https://cdn.rawgit.com/GluuFederation/openid-implicit-client/master/openidconnect.js"></script>
 </head>
 <body>
@@ -34,13 +34,9 @@
 
         var login = function() {
             OIDC.login({
-                scope : 'openid profile',
-                response_type : 'token id_token',
-                max_age : 60,
-                claims : {
-                    id_token : ['email', 'phone_number'],
-                    userinfo : ['given_name', 'family_name']
-                }
+                scope : 'openid email uma_protection',
+                response_type : 'token',
+                max_age : 60
             });
         };
 
