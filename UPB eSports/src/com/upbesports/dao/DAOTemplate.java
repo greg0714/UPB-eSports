@@ -5,9 +5,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
-import com.upbesports.utils.ValidationUtils;
 
 //Found on https://www.baeldung.com/spring-dao-jpa
 public abstract class DAOTemplate<T extends Serializable> {
@@ -85,27 +82,29 @@ public abstract class DAOTemplate<T extends Serializable> {
 	 * @param sorters A list of columns to sort by in order. Nullable.
 	 * @return A JSON list of teams that meet the given criteria
 	 */
-	@SuppressWarnings("unchecked")
-	public List<T> findAllFiltered(String filters, String sorters) 
-	{
-		boolean hasFilters = ValidationUtils.validateString(filters), hasSorters = ValidationUtils.validateString(sorters);
-		StringBuilder sb = new StringBuilder("select * from " + clazz.getSimpleName() + " ");
-		
-		if(hasFilters)
-		{
-			sb.append("where :filters ");
-		}
-		
-		if(hasSorters) 
-		{
-			sb.append("order by :sorters ");
-		}
-		
-		Query query = this.getEntityManager().createNativeQuery(sb.toString(), clazz);
-		if(hasFilters) query.setParameter("filters", filters);
-		if(hasSorters) query.setParameter("sorters", sorters);
-		return query.getResultList();
-	}
+	
+//	Commented out until a better handling of filters and sorters can be created
+//	@SuppressWarnings("unchecked")
+//	public List<T> findAllFiltered(String filters, String sorters) 
+//	{
+//		boolean hasFilters = ValidationUtils.validateString(filters), hasSorters = ValidationUtils.validateString(sorters);
+//		StringBuilder sb = new StringBuilder("select * from " + clazz.getSimpleName() + " ");
+//		
+//		if(hasFilters)
+//		{
+//			sb.append("where :filters ");
+//		}
+//		
+//		if(hasSorters) 
+//		{
+//			sb.append("order by :sorters ");
+//		}
+//		
+//		Query query = this.getEntityManager().createNativeQuery(sb.toString(), clazz);
+//		if(hasFilters) query.setParameter("filters", filters);
+//		if(hasSorters) query.setParameter("sorters", sorters);
+//		return query.getResultList();
+//	}
 	
 	public EntityManager getEntityManager() 
 	{

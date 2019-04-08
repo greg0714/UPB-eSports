@@ -50,15 +50,15 @@ create table Stats (
     FOREIGN KEY (game_id) REFERENCES Games(id)
 );
 
-create table PlayerStats (
+create table TeamPlayersStats (
 	id int not null auto_increment primary key,
-    player_id int not null,
+    team_player_id int not null,
     stat_id int not null,
     updated timestamp,
     updated_by varchar(50),
     value varchar(50),
     value_num decimal,
-    FOREIGN KEY (player_id) REFERENCES Players(id),
+    FOREIGN KEY (team_player_id) REFERENCES Players(id),
     FOREIGN KEY (stat_id) REFERENCES Stats(id)
 );
 

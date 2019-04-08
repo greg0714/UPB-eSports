@@ -20,6 +20,6 @@ public class HomeController
     {
         final String username = SecurityContextHolder.getContext().getAuthentication().getName();
         logger.info(username);
-        return username;
+        return username.equals("anonymousUser") ? "Anonymous User" : username;
     }
 }

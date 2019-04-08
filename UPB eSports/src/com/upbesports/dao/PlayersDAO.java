@@ -1,7 +1,6 @@
 package com.upbesports.dao;
 
-import javax.persistence.NoResultException;
-import javax.persistence.NonUniqueResultException;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,24 +12,14 @@ import com.upbesports.model.db.Players;
 public class PlayersDAO extends DAOTemplate<Players> 
 {
 	public PlayersDAO() {setClazz(Players.class);}
-	
-	public Players findByEmail(String email)
+
+	@SuppressWarnings("unchecked")
+	public List<Players> findFilteredByTeam(Long teamId) 
 	{
-		Players player = null;
-		try 
-		{
-			return (Players) this.getEntityManager()
-				.createNativeQuery("select * from Players where email = :email", Players.class)
-				.setParameter("email", email)
-				.getSingleResult();
-		} 
-		catch(NoResultException e) 
-		{
-			return player;
-		}
-		catch(NonUniqueResultException e)
-		{
-			return player;
-		}
+		return this.getEntityManager().createNativeQuery("select p.* from Players p " +
+			"left join TeamPlayers tp on p.id = tp.player_id " + 
+			"left join Teams t on t.id = tp.team_id where t.id = :teamId", Players.class)
+			.setParameter("teamId", teamId)
+			.getResultList();
 	}
 }

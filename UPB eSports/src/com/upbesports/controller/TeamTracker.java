@@ -17,9 +17,8 @@ import com.upbesports.dao.PlayersDAO;
 import com.upbesports.dao.TeamsDAO;
 import com.upbesports.model.db.Games;
 import com.upbesports.model.db.Players;
-import com.upbesports.model.db.Teams;
 import com.upbesports.model.form.GamesForm;
-import com.upbesports.utils.QueryUtils;
+import com.upbesports.model.report.TeamModel;
 
 @RestController
 public class TeamTracker 
@@ -31,10 +30,19 @@ public class TeamTracker
 	@RequestMapping(value = "/teamTracker/getGames", method = RequestMethod.GET)
 	public List<Games> getGames(HttpServletRequest request, HttpServletResponse response)
 	{
-    	String filters = request.getParameter("filters");
-    	String sorters = request.getParameter("sorters");
-    	
-		return gamesDAO.findAllFiltered(filters, sorters);
+    	return gamesDAO.findAll();
+	}
+
+	@RequestMapping(value = "/teamTracker/getTeams", method = RequestMethod.GET)
+	public List<TeamModel> getTeams(HttpServletRequest request, HttpServletResponse response)
+	{
+    	return teamsDAO.findWithGameAndManager();
+	}
+    
+	@RequestMapping(value = "/teamTracker/getPlayers", method = RequestMethod.GET)
+	public List<Players> getPlayers(HttpServletRequest request, HttpServletResponse response)
+	{
+    	return playersDAO.findAll();
 	}
 	
 	@RequestMapping(value = "/teamTracker/addGame", method = RequestMethod.POST)
@@ -58,25 +66,4 @@ public class TeamTracker
 		else response.sendError(HttpServletResponse.SC_CONFLICT, "A game with that name already exists.");
 	}
 	
-	@RequestMapping(value = "/teamTracker/getTeams", method = RequestMethod.GET)
-	public List<Teams> getTeams(HttpServletRequest request, HttpServletResponse response)
-	{
-    	String filters = request.getParameter("filters");
-    	String sorters = request.getParameter("sorters");
-    	String gameId = request.getParameter("gameId");
-    	
-    	if(gameId != null) QueryUtils.addFilter("gameId == ", gameId, true, filters);
-    	return teamsDAO.findAllFiltered(filters, sorters);
-	}
-    
-	@RequestMapping(value = "/teamTracker/getPlayers", method = RequestMethod.GET)
-	public List<Players> getPlayers(HttpServletRequest request, HttpServletResponse response)
-	{
-    	String filters = request.getParameter("filters");
-    	String sorters = request.getParameter("sorters");
-    	String teamId = request.getParameter("gameId");
-    	
-    	if(teamId != null) QueryUtils.addFilter("teamId == ", teamId, true, filters);
-    	return playersDAO.findAllFiltered(filters, sorters);
-	}
 }

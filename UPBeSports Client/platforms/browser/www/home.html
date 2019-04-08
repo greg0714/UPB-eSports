@@ -1,92 +1,251 @@
 <!DOCTYPE html> 
 <html>
 <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>UPB eSports</title>
+	<link rel="stylesheet" type="text/css" href="/css/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/themes/PittColors.css">
     <script src="cordova.js"></script>
-    <script src="js/cookie-handler.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://cdn.rawgit.com/GluuFederation/openid-implicit-client/master/openidconnect.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.0/js.cookie.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/home.js"></script>
 </head>
+
 <body>
+<!-- Start of #home -->
+<div data-role="page" id="home">
+
+    <div data-role="header">
+        <h1>Home</h1>
+        
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#team-tracker">Tracker</a></li>
+                <li><a href="#statistics">Statistics</a></li>
+                <li><a href="#scheduling">Scheduling</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /header -->
+
+	<div role="main" class="ui-content">
+		<h2 id="welcome-title"></h2>
+
+		<p>Welcome to the Pitt-Bradford eSports management app. The sections available to you are:</p>
+        <ul>
+            <li>Team Tracker - Add or view a game, team, or player in the club</li>
+            <li>Statistics - Track the stats of the players for each of their games</li>
+            <li>Scheduling - Schedule the practices and tournaments of all the teams</li>
+        </ul>
+        <ul data-role="listview" data-inset="true">
+            <li><a href="#team-tracker">Team Tracker</a></li>
+            <li><a href="#statistics">Statistics</a></li>
+            <li><a href="#scheduling">Scheduling</a></li>
+        </ul>
+        <p>To log out, simply close all open pages on the site.</p>
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>&copy;Greg McKibbin 2019</h4>
+	</div><!-- /footer -->
+</div><!-- /page home -->
+
+<!-- Start of #team-tracker -->
+<div data-role="page" id="team-tracker">
+
+	<div data-role="header">
+        <h1>Team Tracker</h1>
+        
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#team-tracker">Tracker</a></li>
+                <li><a href="#statistics">Statistics</a></li>
+                <li><a href="#scheduling">Scheduling</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /header -->
+
+	<div role="main" class="ui-content">
+		<ul data-role="listview" data-inset="true">
+			<li><a href="#games">Games</a></li>
+			<li><a href="#teams">Teams</a></li>
+			<li><a href="#players">Players</a></li>
+		</ul>
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>&copy;Greg McKibbin 2019</h4>
+	</div><!-- /footer -->
+</div><!-- /page team-tracker -->
+
+<!-- Start of #games -->
+<div data-role="page" id="games">
+
+	<div data-role="header">
+        <h1>Games</h1>
+        
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#team-tracker">Tracker</a></li>
+                <li><a href="#statistics">Statistics</a></li>
+                <li><a href="#scheduling">Scheduling</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /header -->
+
+	<div role="main" class="ui-content">
+        <table data-filter="true" data-role="table" data-mode="reflow" class="ui-responsive">
+            <thead>
+                <tr>
+                    <th>Game</th>
+                    <th data-priority="1">Cost</th>
+                    <th data-priority="3">Platforms</th>
+                    <th data-priority="2">Subscription?</th>
+                    <th data-priority="4">Microtransactions?</th>
+                    <th data-priority="5">Updated</th>
+                    <th data-priority="6">Updated By</th>
+                </tr>
+            </thead>
+            <tbody id="games-table">
+            </tbody>
+        </table>
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>&copy;Greg McKibbin 2019</h4>
+	</div><!-- /footer -->
+</div><!-- /page games -->
+
+<!-- Start of #teams -->
+<div data-role="page" id="teams">
+
+	<div data-role="header">
+        <h1>Teams</h1>
+        
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#team-tracker">Tracker</a></li>
+                <li><a href="#statistics">Statistics</a></li>
+                <li><a href="#scheduling">Scheduling</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /header -->
+
+	<div role="main" class="ui-content">
+        <table data-filter="true" data-role="table" data-mode="reflow" class="ui-responsive">
+            <thead>
+                <tr>
+                    <th>Team</th>
+                    <th data-priority="1">Game</th>
+                    <th data-priority="2">Manager</th>
+                    <th data-priority="3">W/L/D</th>
+                    <th data-priority="3">Players</th>
+                    <th data-priority="4">Updated</th>
+                    <th data-priority="5">Updated By</th>
+                </tr>
+            </thead>
+            <tbody id="teams-table">
+            </tbody>
+        </table>
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>&copy;Greg McKibbin 2019</h4>
+	</div><!-- /footer -->
+</div><!-- /page teams -->
+
+<!-- Start of #players -->
+<div data-role="page" id="players">
+
+    <div data-role="header">
+        <h1>Players</h1>
+        
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#team-tracker">Tracker</a></li>
+                <li><a href="#statistics">Statistics</a></li>
+                <li><a href="#scheduling">Scheduling</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content">
+        <table data-filter="true" data-role="table" data-mode="reflow" class="ui-responsive">
+            <thead>
+                <tr>
+                    <th>Display Name</th>
+                    <th data-priority="2">Full Name</th>
+                    <th data-priority="1">Eligible</th>
+                    <th data-priority="3">Joined</th>
+                    <th data-priority="4">Updated</th>
+                    <th data-priority="5">Updated By</th>
+                </tr>
+            </thead>
+            <tbody id="players-table">
+            </tbody>
+        </table>
+    </div><!-- /content -->
+
+    <div data-role="footer">
+        <h4>&copy;Greg McKibbin 2019</h4>
+    </div><!-- /footer -->
+</div><!-- /page players -->
     
+<!-- Start of #statistics -->
+<div data-role="page" id="statistics">
+
+	<div data-role="header">
+        <h1>Team Tracker</h1>
+        
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#team-tracker">Tracker</a></li>
+                <li><a href="#statistics">Statistics</a></li>
+                <li><a href="#scheduling">Scheduling</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /header -->
+
+	<div role="main" class="ui-content">
+		
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>&copy;Greg McKibbin 2019</h4>
+	</div><!-- /footer -->
+</div><!-- /page statistics -->
+
+<!-- Start of #scheduling -->
+<div data-role="page" id="scheduling">
+
+	<div data-role="header">
+        <h1>Team Tracker</h1>
+        
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#team-tracker">Tracker</a></li>
+                <li><a href="#statistics">Statistics</a></li>
+                <li><a href="#scheduling">Scheduling</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /header -->
+
+	<div role="main" class="ui-content">
+		
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>&copy;Greg McKibbin 2019</h4>
+	</div><!-- /footer -->
+</div><!-- /page scheduling -->
+
 </body>
-<script>
-    var storage = window.localStorage;
-
-    var statusCodeDefaults = {
-        401: function(){window.location = "https://localhost:8000/index.html"},
-        404: function(){alert("Resource not found.")},
-        500: function(){alert("There was an error with your request. Please try again later. If the problem persists, contact the administrator.")}
-    };
-    
-    var createPageTemplate = function(title, html) {
-        '<ons-page>' +
-            '<ons-toolbar>' +
-            '<div class="left">' +
-                '<ons-toolbar-button onclick="fn.open()">' +
-                '<ons-icon icon="md-menu"></ons-icon>'
-                '</ons-toolbar-button>' +
-            '</div>' +
-            '<div class="center">' + title + '</div>' +
-            '</ons-toolbar>' + html +
-        '</ons-page>'
-    };
-
-    loadHomePage = function() {
-        var html;
-        var content = $('#content');
-        $.ajax({
-            url: 'https://localhost:8443/',
-            headers: {Authorization: 'Bearer ' + storage.getItem('access_token')},
-            statusCode: statusCodeDefaults,
-            success: function(data){
-                html = '<h2 style="text-align:\'center\'>Welcome, ' + data + '!</h2>';
-                content.html(createPageTemplate('Home', html));
-                console.log(html);
-            },
-            error: function(jqxhr){
-                console.log(jqxhr);
-            }
-        });
-    };
-
-    loadPlayersPage = function() {
-        var html;
-        $.ajax({
-            url: 'https://localhost:8443/teamTracker/getPlayers',
-            statusCode: statusCodeDefaults,
-            success: function(data){
-                html = '<ons-list><ons-list-header>Players</ons-list-header>';
-                for(var i = 0; i < data.length; i++){
-                    html += '<ons-list-item expandable>' + data[i].displayName + '<div class="expandable-content">';
-                    html += 'First Name: ' + data[i].firstName + '<br/>';
-                    html += 'Middle Name: ' + data[i].middleName + '<br/>';
-                    html += 'Last Name: ' + data[i].lastName + '<br/>';
-                    html += 'Eligible: ' + (data[i].eligible ? 'Yes' : 'No') + '<br/>';
-                    html += 'Joined: ' + data[i].joined + '<br/>';
-                    html += 'Updated: ' + data[i].updated + '<br/>';
-                    html += 'Updated By: ' + data[i].updatedBy + '<br/>';
-                    html += '</div></ons-list-item>'
-                }
-                html += '</ons-list>';
-                $(document).ready(function() {$('#content').html(createPageTemplate('Players', html))});
-            },
-            error: function(jqxhr){
-                console.log(jqxhr);
-            }
-        });
-    };
-
-    $(document).ready(function() {
-        try{
-            OIDC.restoreInfo();
-            var access_token = OIDC.getAccessToken();
-            storage.setItem("access_token", access_token);
-            loadHomePage();
-        } catch(err) {
-            window.location = 'http://localhost:8000/index.html'
-        }
-    });
-</script>
 </html>

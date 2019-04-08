@@ -11,6 +11,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "Games")
 public class Games implements Serializable 
@@ -63,6 +65,7 @@ public class Games implements Serializable
 	public Boolean getSubscription() {return subscription;}
 	public void setSubscription(Boolean subscription) {this.subscription = subscription;}
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "updated")
 	public Calendar getUpdated() {return updated;}
