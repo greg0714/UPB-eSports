@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: UPB eSports
+Implementation-Version: 0.1
+Built-By: gsm19
+Implementation-Vendor-Id: UPB-eSports
+Build-Jdk: 1.8.0_211
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/UPB-eSports
+Created-By: Maven Integration for Eclipse
+

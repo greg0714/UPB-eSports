@@ -27,12 +27,13 @@ public class TeamModel implements Serializable
 	private Long
 		draws = null,
 		id = null,
+		game = null,
+		manager = null,
 		losses = null,
 		wins = null;
 	
 	private String 
-		game = null,
-		manager = null,
+		managerName = null,
 		name = null,
 		updatedBy = null;
 
@@ -46,16 +47,20 @@ public class TeamModel implements Serializable
 	public void setDraws(Long draws) {this.draws = draws;}
 
 	@Column(name = "game")
-	public String getGame() { return game; }
-	public void setGame(String game) { this.game = game; }
+	public Long getGame() { return game; }
+	public void setGame(Long game) { this.game = game; }
 
 	@Column(name = "losses")
 	public Long getLosses() {return losses;}
 	public void setLosses(Long losses) {this.losses = losses;}
 
 	@Column(name = "manager")
-	public String getManager() { return manager; }
-	public void setManager(String manager) { this.manager = manager; }
+	public Long getManager() { return manager; }
+	public void setManager(Long manager) { this.manager = manager; }
+
+	@Column(name = "manager_name")
+	public String getManagerName() { return managerName; }
+	public void setManagerName(String managerName) { this.managerName = managerName; }
 
 	@Column(name = "name")
 	public String getName() { return name; }
@@ -110,7 +115,7 @@ public class TeamModel implements Serializable
 	public String toString() 
 	{
 		return "TeamModel [id=" + id + ", draws=" + draws + ", game=" + game + ", losses=" + losses + ", manager="
-				+ manager + ", name=" + name + ", players=" + players + ", updated=" + updated + ", updatedBy="
+				+ manager + ", managerName=" + managerName + ", name=" + name + ", players=" + players + ", updated=" + updated + ", updatedBy="
 				+ updatedBy + ", wins=" + wins + "]";
 	}
 }

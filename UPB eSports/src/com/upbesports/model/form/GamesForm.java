@@ -4,51 +4,73 @@ import java.math.BigDecimal;
 
 public class GamesForm 
 {
-	private BigDecimal cost = null;
+	private BigDecimal gameCost = null;
 	
 	private Boolean
-		microtransactions = null,
-		subscription = null;
+		gameMicrotransactions = null,
+		gameSubscription = null;
 	
 	private Long 
-		id = null,
-		playerBase = null;
+		gameId = null;
 	
 	private String
-		name = null,
-		platforms = null;
+		gameName = null,
+		gamePlatforms = null;
 
-	public Long getId() {return id;}
-	public void setId(Long id) {this.id = id;}
-
-	public BigDecimal getCost() {return cost;}
-	public void setCost(BigDecimal cost) {this.cost = cost;}
-
-	public Boolean getMicrotransactions() {return microtransactions;}
-	public void setMicrotransactions(Boolean microtransactions) {this.microtransactions = microtransactions;}
-
-	public String getName() {return name;}
-	public void setName(String name) {this.name = name;}
-
-	public String getPlatforms() {return platforms;}
-	public void setPlatforms(String platforms) {this.platforms = platforms;}
-	
-	public Long getPlayerBase() {return playerBase;}
-	public void setPlayerBase(Long playerBase) {this.playerBase = playerBase;}
-
-	public Boolean getSubscription() {return subscription;}
-	public void setSubscription(Boolean subscription) {this.subscription = subscription;}
-	
-	@Override
-	public String toString() 
-	{
-		return "Games [id=" + id + 
-			", cost=" + cost + 
-			", microtransactions=" + microtransactions + 
-			", name=" + name + 
-			", platforms=" + platforms + 
-			", playerBase=" + playerBase + 
-			", subscription=" + subscription + 
-		"]";
+	public BigDecimal getGameCost() {
+		return gameCost;
 	}
+
+	public void setGameCost(BigDecimal gameCost) {
+		this.gameCost = gameCost;
+	}
+
+	public Boolean getGameMicrotransactions() {
+		return gameMicrotransactions;
+	}
+
+	public void setGameMicrotransactions(Boolean gameMicrotransactions) {
+		this.gameMicrotransactions = gameMicrotransactions;
+	}
+
+	public Boolean getGameSubscription() {
+		return gameSubscription;
+	}
+
+	public void setGameSubscription(Boolean gameSubscription) {
+		this.gameSubscription = gameSubscription;
+	}
+
+	public Long getGameId() {
+		return gameId;
+	}
+
+	public void setGameId(Long gameId) {
+		this.gameId = gameId;
+	}
+
+	public String getGameName() {
+		return gameName;
+	}
+
+	public void setGameName(String gameName) {
+		this.gameName = gameName;
+	}
+
+	public String getGamePlatforms() {
+		return gamePlatforms;
+	}
+
+	public void setGamePlatforms(String gamePlatforms) {
+		this.gamePlatforms = gamePlatforms;
+	}
+
+	@Override
+	public String toString() {
+		return "GamesForm [gameCost=" + gameCost + ", gameMicrotransactions=" + gameMicrotransactions + ", gameSubscription="
+				+ gameSubscription + ", gameId=" + gameId + ", gameName=" + gameName + ", gamePlatforms="
+				+ gamePlatforms + "]";
+	}
+
+	
 }

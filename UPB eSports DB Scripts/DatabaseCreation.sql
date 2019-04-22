@@ -4,7 +4,6 @@ create table Games (
     cost decimal(5,2),
     subscription boolean,
     microtransactions boolean,
-    player_base long,
     platforms varchar(50),
     updated timestamp,
     updated_by varchar(50)

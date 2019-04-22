@@ -10,6 +10,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "TeamSchedules")
 public class TeamSchedules implements Serializable 
@@ -39,6 +41,7 @@ public class TeamSchedules implements Serializable
 	public String getComments() {return comments;}
 	public void setComments(String comments) {this.comments = comments;}
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "event_time")
 	public Calendar getEventTime() {return eventTime;}
@@ -56,6 +59,7 @@ public class TeamSchedules implements Serializable
 	public Long getTeamId() {return teamId;}
 	public void setTeamId(Long teamId) {this.teamId = teamId;}
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "updated")
 	public Calendar getUpdated() {return updated;}

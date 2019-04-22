@@ -6,6 +6,7 @@
 	<title>UPB eSports</title>
 	<link rel="stylesheet" type="text/css" href="/css/jquery.mobile-1.4.5.min.css">
 	<link rel="stylesheet" type="text/css" href="/css/themes/PittColors.css">
+	<link rel="stylesheet" type="text/css" href="/css/index.css">
     <script src="cordova.js"></script>
     <script src="https://cdn.rawgit.com/GluuFederation/openid-implicit-client/master/openidconnect.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -19,7 +20,7 @@
 
     <div data-role="header">
         <h1>Home</h1>
-        
+        <button onclick="logout()" data-icon="user" class="ui-btn-right">Logout</button>
         <div data-role="navbar">
             <ul>
                 <li><a href="#home">Home</a></li>
@@ -44,7 +45,6 @@
             <li><a href="#statistics">Statistics</a></li>
             <li><a href="#scheduling">Scheduling</a></li>
         </ul>
-        <p>To log out, simply close all open pages on the site.</p>
 	</div><!-- /content -->
 
 	<div data-role="footer">
@@ -70,9 +70,13 @@
 
 	<div role="main" class="ui-content">
 		<ul data-role="listview" data-inset="true">
-			<li><a href="#games">Games</a></li>
-			<li><a href="#teams">Teams</a></li>
-			<li><a href="#players">Players</a></li>
+			<li><a href="#games">View Games</a></li>
+			<li><a href="#teams">View Teams</a></li>
+			<li><a href="#players">View Players</a></li>
+			<li><a href="#games-form-page">Add/Modify Games</a></li>
+			<li><a href="#teams-form-page">Add/Modify Teams</a></li>
+			<li><a href="#players-form-page">Add/Modify Players</a></li>
+			<li><a href="#team-players-form-page">Add/Remove Players on Teams</a></li>
 		</ul>
 	</div><!-- /content -->
 
@@ -85,7 +89,7 @@
 <div data-role="page" id="games">
 
 	<div data-role="header">
-        <h1>Games</h1>
+        <h1>View Games</h1>
         
         <div data-role="navbar">
             <ul>
@@ -124,7 +128,7 @@
 <div data-role="page" id="teams">
 
 	<div data-role="header">
-        <h1>Teams</h1>
+        <h1>View Teams</h1>
         
         <div data-role="navbar">
             <ul>
@@ -163,7 +167,7 @@
 <div data-role="page" id="players">
 
     <div data-role="header">
-        <h1>Players</h1>
+        <h1>View Players</h1>
         
         <div data-role="navbar">
             <ul>
@@ -196,12 +200,207 @@
         <h4>&copy;Greg McKibbin 2019</h4>
     </div><!-- /footer -->
 </div><!-- /page players -->
-    
+
+<!-- Start of #games-form-page -->
+<div data-role="page" id="games-form-page">
+
+    <div data-role="header">
+        <h1>Add/Modify Games</h1>
+        
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#team-tracker">Tracker</a></li>
+                <li><a href="#statistics">Statistics</a></li>
+                <li><a href="#scheduling">Scheduling</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content">
+        <label for="game-add-modify-remove" class="select">Add, modify, or remove</label>
+        <select id="game-add-modify-remove">
+            <option value="add">Add new game</option>
+            <option value="modify">Modify game</option>
+            <option value="remove">Remove game</option>
+        </select>
+        <form id="game-form" method="POST">
+            <label for="game-select" class="select">Game</label>
+            <select id="game-select" name="gameId" disabled>
+            </select>
+            <label for="game-name">Game name</label>
+            <input type="text" id="game-name" name="gameName">
+            <label for="game-cost">Cost</label>
+            <input type="number" step="0.01" id="game-cost" name="gameCost" pattern="[0-9.]*">
+            <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                <legend>Subscription?</legend>
+                    <input type="radio" name="gameSubscription" id="game-subscription-yes" value="true" checked="checked">
+                    <label for="game-subscription-yes">Yes</label>
+                    <input type="radio" name="gameSubscription" id="game-subscription-no" value="false">
+                    <label for="game-subscription-no">No</label>
+            </fieldset>
+            <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                <legend>Microtransactions?</legend>
+                    <input type="radio" name="gameMicrotransactions" id="game-microtransactions-yes" value="true" checked="checked">
+                    <label for="game-microtransactions-yes">Yes</label>
+                    <input type="radio" name="gameMicrotransactions" id="game-microtransactions-no" value="false">
+                    <label for="game-microtransactions-no">No</label>
+            </fieldset>
+            <label for="game-platforms">Platforms</label>
+            <input type="text" id="game-platforms" name="gamePlatforms">
+            <input type="submit" value="Submit">
+        </form>
+    </div><!-- /content -->
+
+    <div data-role="footer">
+        <h4>&copy;Greg McKibbin 2019</h4>
+    </div><!-- /footer -->
+</div><!-- /page games-form-page -->
+
+<!-- Start of #teams-form-page -->
+<div data-role="page" id="teams-form-page">
+
+    <div data-role="header">
+        <h1>Add/Modify Teams</h1>
+        
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#team-tracker">Tracker</a></li>
+                <li><a href="#statistics">Statistics</a></li>
+                <li><a href="#scheduling">Scheduling</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content">
+        <label for="team-add-modify-remove" class="select">Add, modify, or remove</label>
+        <select id="team-add-modify-remove">
+            <option value="add">Add new team</option>
+            <option value="modify">Modify team</option>
+            <option value="remove">Remove team</option>
+        </select>
+        <form id="team-form" method="POST">
+            <label for="team-select" class="select">Team</label>
+            <select id="team-select" name="teamId" disabled>
+            </select>
+            <label for="team-game-select" class="select">Game</label>
+            <select id="team-game-select" name="teamGameId">
+            </select>
+            <label for="team-manager-select" class="select">Manager</label>
+            <select id="team-manager-select" name="teamManagerId">
+            </select>
+            <label for="team-name">Team name</label>
+            <input type="text" id="team-name" name="teamName">
+            <label for="team-wins">Wins</label>
+            <input type="number" id="team-wins" name="teamWins" pattern="[0-9.]*">
+            <label for="team-losses">Losses</label>
+            <input type="number" id="team-losses" name="teamLosses" pattern="[0-9.]*">
+            <label for="team-draws">Draws</label>
+            <input type="number" id="team-draws" name="teamDraws" pattern="[0-9.]*">
+            <input type="submit" value="Submit">
+        </form>
+    </div><!-- /content -->
+
+    <div data-role="footer">
+        <h4>&copy;Greg McKibbin 2019</h4>
+    </div><!-- /footer -->
+</div><!-- /page teams-form-page -->
+
+<!-- Start of #players-form-page -->
+<div data-role="page" id="players-form-page">
+
+    <div data-role="header">
+        <h1>Add/Modify Players</h1>
+        
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#team-tracker">Tracker</a></li>
+                <li><a href="#statistics">Statistics</a></li>
+                <li><a href="#scheduling">Scheduling</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content">
+        <label for="player-add-modify-remove" class="select">Add, modify, or remove</label>
+        <select id="player-add-modify-remove">
+            <option value="add">Add new player</option>
+            <option value="modify">Modify player</option>
+            <option value="remove">Remove player</option>
+        </select>
+        <form id="player-form" method="POST">
+            <label for="player-select" class="select">Player</label>
+            <select id="player-select" name="playerId" disabled>
+            </select>
+            <label for="player-first-name">First name</label>
+            <input type="text" id="player-first-name" name="firstName">
+            <label for="player-middle-name">Middle name</label>
+            <input type="text" id="player-middle-name" name="middleName">
+            <label for="player-last-name">Last name</label>
+            <input type="text" id="player-last-name" name="lastName">
+            <label for="player-display-name">Display name</label>
+            <input type="text" id="player-display-name" name="displayName">
+            <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                <legend>Eligible?</legend>
+                    <input type="radio" name="eligible" id="player-eligible-yes" value="true" checked="checked">
+                    <label for="player-eligible-yes">Yes</label>
+                    <input type="radio" name="eligible" id="player-eligible-no" value="false">
+                    <label for="player-eligible-no">No</label>
+            </fieldset>
+            <input type="submit" value="Submit">
+        </form>
+    </div><!-- /content -->
+
+    <div data-role="footer">
+        <h4>&copy;Greg McKibbin 2019</h4>
+    </div><!-- /footer -->
+</div><!-- /page players-form-page -->
+
+<!-- Start of #team-players-form-page -->
+<div data-role="page" id="team-players-form-page">
+
+    <div data-role="header">
+        <h1>Add/Remove Players on Teams</h1>
+        
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#team-tracker">Tracker</a></li>
+                <li><a href="#statistics">Statistics</a></li>
+                <li><a href="#scheduling">Scheduling</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content">
+        <label for="team-player-add-remove" class="select">Add or Remove</label>
+        <select id="team-player-add-remove">
+            <option value="add">Add new player</option>
+            <option value="remove">Remove player</option>
+        </select>
+        <form id="team-player-form" method="POST">
+            <label for="team-player-player-select" class="select">Player</label>
+            <select id="team-player-player-select" name="playerId">
+            </select>
+            <label for="team-player-team-select" class="select">Team</label>
+            <select id="team-player-team-select" name="teamId">
+            </select>
+            <input type="submit" value="Submit">
+        </form>
+    </div><!-- /content -->
+
+    <div data-role="footer">
+        <h4>&copy;Greg McKibbin 2019</h4>
+    </div><!-- /footer -->
+</div><!-- /page players-form-page -->
+
 <!-- Start of #statistics -->
 <div data-role="page" id="statistics">
 
 	<div data-role="header">
-        <h1>Team Tracker</h1>
+        <h1>Statistics</h1>
         
         <div data-role="navbar">
             <ul>
@@ -214,7 +413,12 @@
     </div><!-- /header -->
 
 	<div role="main" class="ui-content">
-		
+		<ul data-role="listview" data-inset="true">
+			<li><a href="#statistics-view">View a Player's Statistics</a></li>
+			<li><a href="#statistics-modify">Modify a Player's Statistics</a></li>
+			<li><a href="#statistics-view">View a Games's Statistics</a></li>
+			<li><a href="#statistics-view">Add/Remove a Game's Statistics</a></li>
+		</ul>
 	</div><!-- /content -->
 
 	<div data-role="footer">
@@ -222,11 +426,11 @@
 	</div><!-- /footer -->
 </div><!-- /page statistics -->
 
-<!-- Start of #scheduling -->
-<div data-role="page" id="scheduling">
+<!-- Start of #statistics-view -->
+<div data-role="page" id="statistics-view">
 
 	<div data-role="header">
-        <h1>Team Tracker</h1>
+        <h1>View Statistics</h1>
         
         <div data-role="navbar">
             <ul>
@@ -239,13 +443,144 @@
     </div><!-- /header -->
 
 	<div role="main" class="ui-content">
-		
+		<h1>Under Construction</h1>
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>&copy;Greg McKibbin 2019</h4>
+	</div><!-- /footer -->
+</div><!-- /page statistics-view -->
+
+<!-- Start of #statistics-modify -->
+<div data-role="page" id="statistics-modify">
+
+	<div data-role="header">
+        <h1>Modify Statistics</h1>
+        
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#team-tracker">Tracker</a></li>
+                <li><a href="#statistics">Statistics</a></li>
+                <li><a href="#scheduling">Scheduling</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /header -->
+
+	<div role="main" class="ui-content">
+
+	</div><!-- /content -->
+        <h1>Under Construction</h1>
+	<div data-role="footer">
+		<h4>&copy;Greg McKibbin 2019</h4>
+	</div><!-- /footer -->
+</div><!-- /page statistics-modify -->
+
+<!-- Start of #scheduling -->
+<div data-role="page" id="scheduling">
+
+	<div data-role="header">
+        <h1>Scheduling</h1>
+        
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#team-tracker">Tracker</a></li>
+                <li><a href="#statistics">Statistics</a></li>
+                <li><a href="#scheduling">Scheduling</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /header -->
+
+	<div role="main" class="ui-content">
+        <ul data-role="listview" data-inset="true">
+            <li><a href="#scheduling-view">View All Events</a></li>
+            <li><a href="#scheduling-modify">Add/Modify Events</a></li>
+        </ul>
 	</div><!-- /content -->
 
 	<div data-role="footer">
 		<h4>&copy;Greg McKibbin 2019</h4>
 	</div><!-- /footer -->
 </div><!-- /page scheduling -->
+
+<!-- Start of #scheduling-view -->
+<div data-role="page" id="scheduling-view">
+
+    <div data-role="header">
+        <h1>View Events</h1>
+        
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#team-tracker">Tracker</a></li>
+                <li><a href="#statistics">Statistics</a></li>
+                <li><a href="#scheduling">Scheduling</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /header -->
+        
+    <div role="main" class="ui-content">
+        <ul id="schedules-view" data-role="listview" data-inset="true" data-shadow="false" data-filter="true" data-filter-reveal="false" data-filter-placeholder="Search events...">
+        </ul>
+    </div><!-- /content -->
+
+    <div data-role="footer">
+        <h4>&copy;Greg McKibbin 2019</h4>
+    </div><!-- /footer -->
+</div><!-- /page scheduling-view -->
+
+<!-- Start of #scheduling-modify -->
+<div data-role="page" id="scheduling-modify">
+
+    <div data-role="header">
+        <h1>Add/Modify Events</h1>
+        
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#team-tracker">Tracker</a></li>
+                <li><a href="#statistics">Statistics</a></li>
+                <li><a href="#scheduling">Scheduling</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content">
+        <label for="schedule-add-modify-remove" class="select">Add, modify, or remove</label>
+        <select id="schedule-add-modify-remove">
+            <option value="add">Add new event</option>
+            <option value="modify">Modify event</option>
+            <option value="remove">Remove event</option>
+        </select>
+        <form id="schedule-form" method="POST">
+            <label for="schedule-select" class="select">Event</label>
+            <select id="schedule-select" name="scheduleId" disabled>
+            </select>
+            <label for="schedule-team-select" class="select">Team</label>
+            <select id="schedule-team-select" name="teamId">
+            </select>
+            <label for="schedule-type-select" class="select">Event Type</label>
+            <select id="schedule-type-select" name="eventType">
+                <option value="Practice">Practice</option>
+                <option value="Tournament">Tournament</option>
+                <option value="Club Hosted">Club Hosted</option>
+                <option value="Other">Other</option>
+            </select>
+            <label for="schedule-location">Location</label>
+            <input type="text" id="schedule-location" name="location">
+            <label for="schedule-date">Date & Time</label>
+            <input type="datetime-local" id="schedule-date" name="date">
+            <label for="schedule-comments">Comments</label>
+            <input type="text" id="schedule-comments" name="comments">
+            <input type="submit" value="Submit">
+        </form>
+    </div><!-- /content -->
+
+    <div data-role="footer">
+        <h4>&copy;Greg McKibbin 2019</h4>
+    </div><!-- /footer -->
+</div><!-- /page scheduling-modify -->
 
 </body>
 </html>

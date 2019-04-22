@@ -6,6 +6,8 @@ import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -27,9 +29,7 @@ public class Games implements Serializable
 	
 	private Calendar updated = null;
 	
-	private Long 
-		id = null,
-		playerBase = null;
+	private Long id = null;
 	
 	private String
 		name = null,
@@ -38,6 +38,7 @@ public class Games implements Serializable
 
 	@Id
 	@Column(name = "id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Long getId() {return id;}
 	public void setId(Long id) {this.id = id;}
 
@@ -57,10 +58,6 @@ public class Games implements Serializable
 	public String getPlatforms() {return platforms;}
 	public void setPlatforms(String platforms) {this.platforms = platforms;}
 	
-	@Column(name = "player_base")
-	public Long getPlayerBase() {return playerBase;}
-	public void setPlayerBase(Long playerBase) {this.playerBase = playerBase;}
-
 	@Column(name = "subscription")
 	public Boolean getSubscription() {return subscription;}
 	public void setSubscription(Boolean subscription) {this.subscription = subscription;}
@@ -110,7 +107,6 @@ public class Games implements Serializable
 			", microtransactions=" + microtransactions + 
 			", name=" + name + 
 			", platforms=" + platforms + 
-			", playerBase=" + playerBase + 
 			", subscription=" + subscription + 
 			", updated=" + updated + 
 			", updatedBy=" + updatedBy + 
